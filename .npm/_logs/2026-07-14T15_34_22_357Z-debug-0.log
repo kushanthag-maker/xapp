@@ -1,0 +1,100 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@11.17.0
+2 info using node@v26.3.1
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/my-proxy/.npmrc
+5 silly config load:file:/data/data/com.termux/files/home/.npmrc
+6 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+7 verbose title npm install proxy-chain
+8 verbose argv "install" "proxy-chain"
+9 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2026-07-14T15_34_22_357Z-
+10 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2026-07-14T15_34_22_357Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:1082392576 maxSize:270598144 maxEntrySize:135299072
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest proxy-chain@*
+16 silly packumentCache full:https://registry.npmjs.org/proxy-chain cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/proxy-chain 1086ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/proxy-chain set size:undefined disposed:false
+19 silly placeDep ROOT proxy-chain@3.0.0 OK for: my-proxy@1.0.0 want: *
+20 silly fetch manifest socks@^2.8.3
+21 silly packumentCache full:https://registry.npmjs.org/socks cache-miss
+22 silly fetch manifest tslib@^2.3.1
+23 silly packumentCache full:https://registry.npmjs.org/tslib cache-miss
+24 silly fetch manifest socks-proxy-agent@^8.0.3
+25 silly packumentCache full:https://registry.npmjs.org/socks-proxy-agent cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/tslib 631ms (cache revalidated)
+27 silly packumentCache full:https://registry.npmjs.org/tslib set size:108843 disposed:false
+28 http fetch GET 200 https://registry.npmjs.org/socks-proxy-agent 970ms (cache revalidated)
+29 silly packumentCache full:https://registry.npmjs.org/socks-proxy-agent set size:108698 disposed:false
+30 http fetch GET 200 https://registry.npmjs.org/socks 1025ms (cache revalidated)
+31 silly packumentCache full:https://registry.npmjs.org/socks set size:173143 disposed:false
+32 silly placeDep ROOT socks@2.8.9 OK for: proxy-chain@3.0.0 want: ^2.8.3
+33 silly placeDep ROOT socks-proxy-agent@8.0.5 OK for: proxy-chain@3.0.0 want: ^8.0.3
+34 silly placeDep ROOT tslib@2.8.1 OK for: proxy-chain@3.0.0 want: ^2.3.1
+35 silly fetch manifest ip-address@^10.1.1
+36 silly packumentCache full:https://registry.npmjs.org/ip-address cache-miss
+37 silly fetch manifest smart-buffer@^4.2.0
+38 silly packumentCache full:https://registry.npmjs.org/smart-buffer cache-miss
+39 silly fetch manifest debug@^4.3.4
+40 silly packumentCache full:https://registry.npmjs.org/debug cache-miss
+41 silly fetch manifest agent-base@^7.1.2
+42 silly packumentCache full:https://registry.npmjs.org/agent-base cache-miss
+43 http fetch GET 200 https://registry.npmjs.org/ip-address 214ms (cache revalidated)
+44 silly packumentCache full:https://registry.npmjs.org/ip-address set size:171530 disposed:false
+45 http fetch GET 200 https://registry.npmjs.org/agent-base 223ms (cache revalidated)
+46 silly packumentCache full:https://registry.npmjs.org/agent-base set size:72085 disposed:false
+47 http fetch GET 200 https://registry.npmjs.org/smart-buffer 273ms (cache revalidated)
+48 silly packumentCache full:https://registry.npmjs.org/smart-buffer set size:87065 disposed:false
+49 http fetch GET 200 https://registry.npmjs.org/debug 725ms (cache revalidated)
+50 silly packumentCache full:https://registry.npmjs.org/debug set size:195840 disposed:false
+51 silly placeDep ROOT ip-address@10.2.0 OK for: socks@2.8.9 want: ^10.1.1
+52 silly placeDep ROOT smart-buffer@4.2.0 OK for: socks@2.8.9 want: ^4.2.0
+53 silly placeDep ROOT agent-base@7.1.4 OK for: socks-proxy-agent@8.0.5 want: ^7.1.2
+54 silly placeDep ROOT debug@4.4.3 OK for: socks-proxy-agent@8.0.5 want: ^4.3.4
+55 silly fetch manifest ms@^2.1.3
+56 silly packumentCache full:https://registry.npmjs.org/ms cache-miss
+57 http fetch GET 200 https://registry.npmjs.org/ms 261ms (cache revalidated)
+58 silly packumentCache full:https://registry.npmjs.org/ms set size:92208 disposed:false
+59 silly placeDep ROOT ms@2.1.3 OK for: debug@4.4.3 want: ^2.1.3
+60 silly reify moves {}
+61 silly audit bulk request {
+61 silly audit   'proxy-chain': [ '3.0.0' ],
+61 silly audit   socks: [ '2.8.9' ],
+61 silly audit   'socks-proxy-agent': [ '8.0.5' ],
+61 silly audit   tslib: [ '2.8.1' ],
+61 silly audit   'ip-address': [ '10.2.0' ],
+61 silly audit   'smart-buffer': [ '4.2.0' ],
+61 silly audit   'agent-base': [ '7.1.4' ],
+61 silly audit   debug: [ '4.4.3' ],
+61 silly audit   ms: [ '2.1.3' ]
+61 silly audit }
+62 http cache debug@https://registry.npmjs.org/debug/-/debug-4.4.3.tgz 0ms (cache hit)
+63 http cache agent-base@https://registry.npmjs.org/agent-base/-/agent-base-7.1.4.tgz 0ms (cache hit)
+64 http cache smart-buffer@https://registry.npmjs.org/smart-buffer/-/smart-buffer-4.2.0.tgz 0ms (cache hit)
+65 http cache ms@https://registry.npmjs.org/ms/-/ms-2.1.3.tgz 0ms (cache hit)
+66 http cache ip-address@https://registry.npmjs.org/ip-address/-/ip-address-10.2.0.tgz 0ms (cache hit)
+67 http cache tslib@https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz 0ms (cache hit)
+68 http cache socks-proxy-agent@https://registry.npmjs.org/socks-proxy-agent/-/socks-proxy-agent-8.0.5.tgz 0ms (cache hit)
+69 http cache socks@https://registry.npmjs.org/socks/-/socks-2.8.9.tgz 0ms (cache hit)
+70 http cache proxy-chain@https://registry.npmjs.org/proxy-chain/-/proxy-chain-3.0.0.tgz 0ms (cache hit)
+71 silly tarball no local data for proxy-chain@https://registry.npmjs.org/proxy-chain/-/proxy-chain-3.0.0.tgz. Extracting by manifest.
+72 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 407ms
+73 silly audit report {}
+74 http fetch GET 200 https://registry.npmjs.org/proxy-chain/-/proxy-chain-3.0.0.tgz 461ms (cache miss)
+75 silly ADD node_modules/ms
+76 silly ADD node_modules/debug
+77 silly ADD node_modules/agent-base
+78 silly ADD node_modules/smart-buffer
+79 silly ADD node_modules/ip-address
+80 silly ADD node_modules/tslib
+81 silly ADD node_modules/socks-proxy-agent
+82 silly ADD node_modules/socks
+83 silly ADD node_modules/proxy-chain
+84 verbose cwd /data/data/com.termux/files/home/my-proxy
+85 verbose os Linux 5.15.194-android13-8-00014-g3af317d1a3d8-ab14850512
+86 verbose node v26.3.1
+87 verbose npm  v11.17.0
+88 verbose exit 0
+89 info ok

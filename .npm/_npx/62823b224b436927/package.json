@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "allow-scripts": "^1.5.3"
+  },
+  "_npx": {
+    "packages": [
+      "allow-scripts"
+    ]
+  }
+}

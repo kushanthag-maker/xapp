@@ -1,0 +1,99 @@
+const axios = require('axios');
+const cheerio = require('cheerio');
+
+async function getDetails(url) {
+    try {
+        const { data: html } = await axios.get(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+                'Referer': 'https://cartoons.lk/'
+            }
+        });
+        const $ = cheerio.load(html);
+
+        // ---------- IMAGE (with lazy-load fallback) ----------
+        let image =
+            $('meta[property="og:image"]').attr('content') ||
+            $('.wp-post-image').attr('src') ||
+            $('.wp-post-image').attr('data-src') ||
+            $('.wp-post-image').attr('data-lazy-src') ||
+            $('article img').first().attr('data-src') ||
+            $('article img').first().attr('src');
+
+        image = image || null;
+
+        // ---------- DOWNLOAD LINK ----------
+        // 1) Normal <a href> check first
+        let downloadLink = "Not Found";
+        const hostPatterns = ['mega.nz', 'drive.google.com', 'mediafire.com'];
+
+        $('a').each((i, el) => {
+            const href = $(el).attr('href') || '';
+            if (hostPatterns.some(h => href.includes(h))) {
+                downloadLink = href;
+            }
+        });
+
+        // 2) If nothing in <a> tags, the site likely injects the links via
+        //    JS inside the "Select Episode" modal (a <script> block or a
+        //    data-* attribute on a button). Scan the WHOLE raw HTML text
+        //    with regex as a fallback — this catches links even if they're
+        //    inside <script> or data attributes.
+        if (downloadLink === "Not Found") {
+            const regex = /https?:\/\/(?:www\.)?(?:mega\.nz|drive\.google\.com|mediafire\.com)\/[^\s"'<>\\]+/i;
+            const match = html.match(regex);
+            if (match) {
+                downloadLink = match[0];
+            }
+        }
+
+        // 3) If STILL not found -> the links are almost certainly loaded via
+        //    an AJAX call after clicking "Select Episode" in the browser.
+        //    axios+cheerio can never see this because it only gets the
+        //    server-rendered HTML, not what JS builds afterwards.
+        if (downloadLink === "Not Found") {
+            downloadLink = "JS-rendered (needs Puppeteer) — see note below";
+        }
+
+        return { image, downloadLink };
+    } catch (e) {
+        return { image: null, downloadLink: "Error: " + e.message };
+    }
+}
+
+async function scrape(query) {
+    const searchUrl = `https://cartoons.lk/?s=${encodeURIComponent(query)}`;
+    const { data } = await axios.get(searchUrl, {
+        headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    const $ = cheerio.load(data);
+    const results = [];
+
+    // Try a few common selectors for post titles/links since themes vary
+    let elements = $('article').slice(0, 3);
+    if (elements.length === 0) {
+        elements = $('.post, .item, .td-block-span6, .entry-title').slice(0, 3);
+    }
+
+    for (let el of elements) {
+        const title =
+            $(el).find('h2 a').first().text().trim() ||
+            $(el).find('h3 a').first().text().trim() ||
+            $(el).find('.entry-title a').first().text().trim();
+
+        const link =
+            $(el).find('h2 a').first().attr('href') ||
+            $(el).find('h3 a').first().attr('href') ||
+            $(el).find('.entry-title a').first().attr('href');
+
+        if (title && link) {
+            console.log(`Processing: ${title}...`);
+            const details = await getDetails(link);
+            results.push({ title, link, ...details });
+        }
+    }
+
+    console.log(JSON.stringify(results, null, 2));
+}
+
+scrape(process.argv[2] || "Ben 10");
