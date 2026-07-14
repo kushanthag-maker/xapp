@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  font-family: var(--font-geist-sans);
+}
+
+/* Beautiful Movie Site Styles - Netflix inspired dark theme */
+.movie-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  z-index: 10;
+}
+
+.movie-card img {
+  transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.movie-card:hover img {
+  transform: scale(1.1);
+}
+
+.modal {
+  animation: modalEnter 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.player-container {
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+
+.quality-btn {
+  transition: all 0.2s ease;
+}
+
+.quality-btn.active {
+  background-color: #e11d48;
+  color: white;
+  border-color: #e11d48;
+}
+
+.quality-btn:hover:not(.active) {
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+.genre-chip {
+  transition: all 0.2s ease;
+}
+
+.genre-chip.active {
+  background-color: #e11d48;
+  color: white;
+  border-color: #e11d48;
+}
+
+.toast {
+  animation: toastSlide 0.3s ease forwards;
+}
+
+@keyframes toastSlide {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Video player custom */
+video {
+  background: #000;
+  width: 100%;
+  max-height: 65vh;
+  outline: none;
+}
+
+/* Scrollbar nice */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Admin form nice inputs */
+.admin-input {
+  background-color: #18181b;
+  border: 1px solid #3f3f46;
+  transition: all 0.2s;
+}
+
+.admin-input:focus {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+  outline: none;
+}
